@@ -7,11 +7,16 @@ const split=(arr)=>{
 }
 const joinSorted=(arr1, arr2)=>{
     const toReturn=[];
-    while(arr1.length &&arr2.length){
-        toReturn.push(arr1[0]<arr2[0] ? arr1.shift() : arr2.shift());
+    let arr1Counter=0;
+    let arr2Counter=0;
+    while(arr1Counter<arr1.length &&arr2Counter<arr2.length){
+        toReturn.push(arr1[arr1Counter]<arr2[arr2Counter] ? arr1[arr1Counter] : arr2[arr2Counter]);
+        arr1[arr1Counter]<arr2[arr2Counter] ? arr1Counter++ : arr2Counter++;
     }
-    while (arr1.length || arr2.length){
-        toReturn.push(arr1.length? arr1.shift():arr2.shift());
+    while (arr1Counter<arr1.length || arr2Counter<arr2.length){
+        toReturn.push(arr1Counter<arr1.length? arr1[arr1Counter]:arr2[arr2Counter]);
+        arr1Counter++;
+        arr2Counter++;
     }
     return toReturn;
 
